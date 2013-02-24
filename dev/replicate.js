@@ -58,7 +58,7 @@ function replicateDdocs () {
 // replicate packages, then when we don't see any
 // updates for a full second, do the users.
 var userTimer
-, didUsers = false
+, didUsers = true
 , didMorePackages = false
 
 function replicatePackages () {
