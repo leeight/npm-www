@@ -18,8 +18,6 @@ var router = require("./router.js")
 config.keys = new Keygrip(config.keys)
 
 function site (req, res) {
-  var start = process.hrtime()
-
   // only allow access via the canonical hostname
   if (config.canon(req, res)) return
 
