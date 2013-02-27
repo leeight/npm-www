@@ -76,8 +76,8 @@ queue(function (cb) {
   // force the configs to be pointed at our local redis and couchdb.
   var config = {}
   config.couchAuth = 'admin:admin'
-  config.registryCouch = 'http://localhost:15984/'
-  config.registryCouch = 'http://localhost:15984/'
+  config.registryCouch = 'http://localhost:8453/'
+  config.registryCouch = 'http://localhost:8453/'
   config.redis = { host: '127.0.0.1', port: 16379 }
   config.redisAuth = 'i-am-using-redis-in-development-mode-for-npm-www'
   config.keys = ['these keys are for dev mode only']
@@ -94,12 +94,12 @@ queue(function (cb) {
     cert: fs.readFileSync(require.resolve('./ssl/server.crt'), 'utf8')
   }
 
-  config.port = 15443
+  config.port = 8443
   config.host = 'localhost'
   config.httpPort = 15080
 
   config.npm = config.npm || {
-    registry: 'http://127.0.0.1:15984/',
+    registry: 'http://127.0.0.1:8453/',
     'strict-ssl': false,
     loglevel: 'warn',
     username: '',

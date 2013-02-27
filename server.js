@@ -32,12 +32,8 @@ npm.load(npmconf, function (er) {
 // this almost never needs to change, so just run it in the master,
 // rather than having each worker to it.
 if (config.https && config.httpPort) {
-  var h = 'https://' + config.host
-  if (config.port && config.port !== 443) h += ':' + config.port
-  var canon = config.canon = require('canonical-host')(h, 301)
   var http = require('http')
   httpServer = http.createServer(function (req, res) {
-    if (canon(req, res)) return
     // wtf?
     res.statusCode = 400
     res.end('bad')

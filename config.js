@@ -1,4 +1,4 @@
-exports.port = 15443
+exports.port = 8443
 exports.host = 'localhost'
 exports.httpPort = 15080
 

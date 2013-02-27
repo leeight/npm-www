@@ -20,7 +20,7 @@ npm install
 # user accounts.  This also creates a user named 'admin' with the
 # password 'admin', which you can use to log in and do stuff.
 # This defaults to listening with a highly insecure SSL key, on
-# port 15443.
+# port 8443.
 npm run dev
 
 # to run the real actual server like in production, copy the

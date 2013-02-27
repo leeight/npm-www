@@ -46,7 +46,7 @@ if (config.port && config.port !== 443) h += ':' + config.port
 
 config.canonicalHost = h
 
-var canon = config.canon = require('canonical-host')(h, lh, 301)
+// var canon = config.canon = require('canonical-host')(h, lh, 301)
 
 config.stamp = 'pid=' + process.pid + ' ' +
                'worker=' + cluster.worker.id + ' ' + gitHead + ' ' + lh

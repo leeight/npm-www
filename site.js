@@ -19,7 +19,7 @@ config.keys = new Keygrip(config.keys)
 
 function site (req, res) {
   // only allow access via the canonical hostname
-  if (config.canon(req, res)) return
+  // if (config.canon(req, res)) return
 
   decorate(req, res, config)
 

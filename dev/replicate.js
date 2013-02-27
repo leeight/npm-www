@@ -41,7 +41,7 @@ function replicateDdocs () {
     if (res.statusCode !== 200) {
       throw new Error('wtf?\n' + JSON.stringify([res.statusCode, body]))
     }
-    request.put({ url: 'http://admin:admin@localhost:15984/' + ddoc +
+    request.put({ url: 'http://admin:admin@localhost:8453/' + ddoc +
                        '?new_edits=false', body: body, json: true }, then2)
   }
   function then2 (er, res, body) {
@@ -65,7 +65,7 @@ function replicatePackages () {
   console.error('replicate packages (around 1/256th of the registry)')
   new Replicator({
     from: 'http://isaacs.iriscouch.com/registry',
-    to: 'http://admin:admin@localhost:15984/registry',
+    to: 'http://admin:admin@localhost:8453/registry',
     filter: filterPackage
   }).push(function () {
     clearTimeout(userTimer)
@@ -80,7 +80,7 @@ function replicateUsers () {
   console.error('replicate users')
   new Replicator({
     from: 'http://isaacs.iriscouch.com/public_users',
-    to: 'http://admin:admin@localhost:15984/public_users',
+    to: 'http://admin:admin@localhost:8453/public_users',
     filter: filterUser
   }).push(function () {
     if (didMorePackages) return
@@ -99,7 +99,7 @@ function morePackages () {
   console.error('even more packages (around 1/16th of the registry)')
   new Replicator({
     from: 'http://isaacs.iriscouch.com/registry',
-    to: 'http://admin:admin@localhost:15984/registry',
+    to: 'http://admin:admin@localhost:8453/registry',
     filter: filterPackageMore
   }).push(function () {
     // this one we just let continue indefinitely.
@@ -107,7 +107,7 @@ function morePackages () {
 
   new Replicator({
     from: 'http://isaacs.iriscouch.com/downloads',
-    to: 'http://admin:admin@localhost:15984/downloads'
+    to: 'http://admin:admin@localhost:8453/downloads'
   }).push(function () {
     // this one we just let continue indefinitely.
   })
