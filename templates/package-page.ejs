@@ -11,7 +11,7 @@
     <p class="description"><%= package.description %></p>
   <% } %>
 
-  <pre class="sh"><code>npm install <%= package.name %></code></pre>
+  <pre class="sh"><code>edp install <%= package.name %></code></pre>
 
   <%- include('download-counts.ejs', {
     day: dlDay,
