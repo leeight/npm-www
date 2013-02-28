@@ -1,6 +1,6 @@
 exports.port = 8443
 exports.host = 'localhost'
-exports.httpPort = 15080
+exports.httpPort = 8463
 
 exports.cluster = { size : require("os").cpus().length }
 

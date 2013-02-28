@@ -96,7 +96,7 @@ queue(function (cb) {
 
   config.port = 8443
   config.host = 'localhost'
-  config.httpPort = 15080
+  config.httpPort = 8463
 
   config.npm = config.npm || {
     registry: 'http://127.0.0.1:8453/',
