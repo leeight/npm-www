@@ -1,42 +1,53 @@
 <%- include('header.ejs', locals) %>
-<div id="package">
-  <h1><%- pageTitle %></h1>
-  <p class="description">
-    <% if (page > 0) { %>
-      <a href="/browse/<%= browseby %>/<%= page - 1 %>/">&larr; previous</a>
-    <% } %>
-    Page <%= page + 1 %>
-    <% if (items.length >= pageSize) { %>
-      <a href="/browse/<%= browseby %>/<%= page + 1 %>/">next &rarr;</a>
-    <% } %>
-  </p>
-  <%
-  items = items.filter(function (p) { return p.name })
 
-  if (items.length) {
-    items.forEach(function (p) {
-      if (!p.name) return
-      %>
-      <div class="row">
-        <p><a href="<%= p.url %>"><%= p.name %></a>
-          <%= p.description || '' %></p>
-      </div>
-      <%
-    })
-  } else {
-    %>
-    <div class="row"><p>No items found.</p></div>
-    <%
-  }
-  %>
-  <p class="description">
-    <% if (page > 0) { %>
-      <a href="/browse/<%= browseby %>/<%= page - 1 %>/">&larr; previous</a>
-    <% } %>
-    Page <%= page + 1 %>
-    <% if (items.length >= pageSize) { %>
-      <a href="/browse/<%= browseby %>/<%= page + 1 %>/">next &rarr;</a>
-    <% } %>
-  </p>
+<div class="page-header">
+  <h3><%- pageTitle %></h3>
 </div>
+
+<div class="pagination">
+  <ul>
+  <% if (page > 0) { %>
+    <li><a href="/browse/<%= browseby %>/<%= page - 1 %>/">&larr;</a></li>
+  <% } %>
+  <li class="active"><a href="#"><%= page + 1 %></a></li>
+  <% if (items.length >= pageSize) { %>
+    <li><a href="/browse/<%= browseby %>/<%= page + 1 %>/">&rarr;</a></li>
+  <% } %>
+  </ul>
+</div>
+
+<table class="table table-bordered">
+<%
+items = items.filter(function (p) { return p.name })
+
+if (items.length) {
+  items.forEach(function (p) {
+    if (!p.name) return
+    %>
+    <tr>
+      <td><a href="<%= p.url %>"><%= p.name %></a></td>
+      <td><%= p.description || '--' %></td>
+    </tr>
+    <%
+  })
+} else {
+  %>
+  <tr><td colspan="2">No items found.</td></tr>
+  <%
+}
+%>
+</table>
+
+<div class="pagination">
+  <ul>
+  <% if (page > 0) { %>
+    <li><a href="/browse/<%= browseby %>/<%= page - 1 %>/">&larr;</a></li>
+  <% } %>
+  <li class="active"><a href="#"><%= page + 1 %></a></li>
+  <% if (items.length >= pageSize) { %>
+    <li><a href="/browse/<%= browseby %>/<%= page + 1 %>/">&rarr;</a></li>
+  <% } %>
+  </ul>
+</div>
+
 <%- include('footer.ejs', locals) %>

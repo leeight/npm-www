@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title><%= (typeof title !== 'undefined' ? title : 'npm') %></title>
+  <title>Baidu edp</title>
   <link rel="canonical" href="<%= canonicalHref %>">
   <link type="text/css" rel="stylesheet" media="all"
-    href="/static/normalize.css">
+    href="/static/bootstrap/css/bootstrap.min.css" />
   <link type="text/css" rel="stylesheet" media="all"
-    href="/stylus/index.css">
+    href="/static/bootstrap/css/bootstrap-responsive.min.css" />
   <link type="text/css" rel="stylesheet" media="all"
-    href="/static/sh.css">
+    href="/static/bootstrap/css/docs.css" />
   <link rel="search" type="application/opensearchdescription+xml"
     href="/static/opensearch.xml" title="Search Packages" />
 <script>(function(){
@@ -18,21 +18,15 @@ var m = location.hash.match(/^#\/[^\/]*$/)
 if (m) location.replace('/package' + m[0].substr(1))
 }})()</script>
 <body>
-  <div id="wrap"><div id="content">
-    <%- include('nav.ejs') %>
-    <%- include('login-aside.ejs', locals) %>
+  <%- include('nav.ejs', locals) %>
+  <%- include('subheader.ejs', locals) %>
 
-    <div id="page">
-      <header>
-        <form action="/search" method="get">
-          <input name=q type="search" placeholder="Search Packages" autofocus="autofocus">
-          <%- csrf %>
-        </form>
-        <h1>
-          <a id="npm-logo" href="/">
-            <img src="/static/npm.png" alt="npm">
-          </a>
-        </h1>
-      </header>
-
-
+  <div class="container">
+          <!--
+          <header>
+            <form action="/search" method="get">
+              <input name=q type="search" placeholder="Search Packages" autofocus="autofocus">
+              <%- csrf %>
+            </form>
+          </header>
+          -->
