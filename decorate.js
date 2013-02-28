@@ -73,6 +73,7 @@ function decorate (req, res, config) {
 
   templateOptions.debug = config.debug
   templateOptions.stamp = config.stamp
+  templateOptions.cache = !config.debug
 
   if (config.errorPage) errorPageConf = config.errorPage
   errorPageConf['*'] = errorHandler
