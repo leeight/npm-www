@@ -1,27 +1,32 @@
 <%- include('header.ejs', locals) %>
-<h1>Edit your Profile</h1>
 
-<p><a href=/password>Change your Password</a></p>
+<div class="row">
+  <div class="span12">
+    <form method=post action=/profile-edit class="form-horizontal">
+      <fielset>
+        <legend>Edit your Profile</legend>
+      <input type=hidden name=_id value="<%= profile._id %>">
+      <input type=hidden name=name value="<%= profile.name %>">
+      <% fields.forEach(function (field) {%>
+        <div class="control-group">
+          <label class="control-label" for="<%= field.name %>"><%= field.title %></label>
+          <div class="controls">
+            <input id="<%= field.name %>" name="<%= field.name %>"
+              value="<%= field.value %>" type="text">
+          </div>
+        </div>
+      <% }) %>
 
-<form method=post action=/profile-edit>
-  <input type=hidden name=_id value="<%= profile._id %>">
-  <input type=hidden name=name value="<%= profile.name %>">
-<%
-fields.forEach(function (field) {
-  %>
-  <fieldset>
-    <label for="<%= field.name %>"><%= field.title %></label>
-    <input id="<%= field.name %>" name="<%= field.name %>"
-      value="<%= field.value %>">
-  </fieldset>
-  <%
-})
-%>
-
-  <fieldset class=buttons>
-    <button class=btn type=submit>Save</button>
-  </fieldset>
-<%- csrf %>
-</form>
+      <div class="control-group">
+        <div class="controls">
+          <button class=btn type=submit>Save</button>
+        </div>
+      </div>
+      
+      <%- csrf %>
+      </fieldset>
+    </form>
+  </div>
+</div>
 
 <%- include('footer.ejs', locals) %>

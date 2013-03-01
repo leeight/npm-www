@@ -1,12 +1,5 @@
 <%- include('header.ejs', locals) %>
 
-<div id="index">
-  <h1>Node Packaged Modules</h1>
-
-  <% if (totalPackages) { %>
-  <p>Total Packages: <%= totalPackages %></p>
-  <% } %>
-
   <%-
   include('download-counts.ejs', {
     day: dlDay,
@@ -15,111 +8,78 @@
   })
   %>
 
-  <p><a href="https://github.com/isaacs/npm-www">Patches welcome!</a></p>
+<div class="row">
+  <div class="span2">
+    <%- include('aside.ejs', locals) %>
+  </div>
+  <div class="span10 index-page">
+    <div class="home-header">
+      <h1>
+        <span class="edp-name">EDP</span>
+        <span class="tag-line">The ECOM Dev Platform</span>
+      </h1>
+    </div>
 
-  <p>Any package can be installed by using <code>
-    <a href="/doc/install.html">npm install</a></code>.</p>
-
-  <p>Add your programs to this index by using <code>
-    <a href="/doc/publish.html">npm publish</a></code>.</p>
-
-  <!-- tables fer layout omigosh! whatever, it works. -->
-  <table>
-  <tr>
-
-    <td>
-      <h2>Recently Updated</h2>
-      <ul>
-        <%
-        var now = Date.now()
-        updated.forEach(function (p) {
-          var m = now - (new Date(p.value).getTime())
-          m = Math.floor(m / (1000 * 60))
-          %><li><%= m %>m <a href="<%= p.url %>"><%= p.name %></a></li>
+    <div class="row">
+      <div class="span4">
+        <table class="table table-striped">
+          <thead><th colspan="2">Recently Updated<a href="/browse/updated" class="pull-right">More...</a></th></thead>
           <%
-        })
-        %>
-        <li><a href="/browse/updated">More...</a></li>
-      </ul>
-    </td>
+          var now = Date.now()
+          updated.forEach(function (p) {
+            var m = now - (new Date(p.value).getTime())
+            m = Math.floor(m / (1000 * 60))
+            %><tr><th><%= m %>m </th><td><a href="<%= p.url %>"><%= p.name %></a></td></tr>
+            <%
+          })
+          %>
+        </table>
+      </div>
 
-    <td>
-      <h2>Most Depended Upon</h2>
-      <ul>
-        <%
-        depended.forEach(function (p) {
-          %><li><%= p.value %> <a href="/package/<%= p.name
-            %>"><%= p.name %></a></li>
+      <div class="span4">
+        <table class="table table-striped">
+          <thead><th colspan="2">Most Depended Upon<a href="/browse/depended" class="pull-right">More...</a></th></thead>
           <%
-        })
-        %>
-        <li><a href="/browse/depended">More...</a></li>
-      </ul>
-    </td>
+          depended.forEach(function (p) {
+            %><tr><th><%= p.value %></th><td><a href="/package/<%= p.name
+              %>"><%= p.name %></a></td></tr>
+            <%
+          })
+          %>
+        </table>
+      </div>
+    </div>
 
-  </tr>
-  <tr>
-
-    <td>
-      <h2>Most Starred</h2>
-      <ul>
-        <%
-        starred.forEach(function (p) {
-          %><li><%= p.value %> <a href="/package/<%= p.name
-          %>"><%= p.name %></a></li>
+    <div class="row">
+      <div class="span4">
+        <table class="table table-striped">
+          <thead><th colspan="2">Most Starred<a href="/browse/star" class="pull-right">More...</a></th></thead>
           <%
-        })
-        %>
-        <li><a href="/browse/star">More...</a></li>
-      </ul>
-    </td>
+          starred.forEach(function (p) {
+            %><tr><th><%= p.value %></th><td><a href="/package/<%= p.name
+            %>"><%= p.name %></a></td></tr>
+            <%
+          })
+          %>
+        </table>
+      </div>
 
-    <td>
-      <h2>Most Prolific Recently</h2>
-      <ul>
-        <%
-        authors.forEach(function (p) {
-          %><li><%= p.value %> <a href="/~<%= p.name
-          %>"><%= p.name %></a></li>
+      <div class="span4">
+        <table class="table table-striped">
+          <thead><th colspan="2">Most Prolific Recently<a href="/recent-authors" class="pull-right">More...</a></th></thead>
           <%
-        })
-        %>
-        <li><a href="/recent-authors">More...</a></li>
-      </ul>
-    </td>
+          authors.forEach(function (p) {
+            %><tr><th><%= p.value %></th><td><a href="/~<%= p.name
+            %>"><%= p.name %></a></td></tr>
+            <%
+          })
+          %>
+        </table>
+      </div>
+    </div>
 
-  </tr>
-  <tr>
-
-    <td>
-      <h2>npm Stuff</h2>
-      <ul>
-        <li><a href="/doc/faq.html">FAQ</a></li>
-        <li><a href="/doc/README.html">Readme</a></li>
-        <li><a href="/doc/disputes.html">Handling Disputes</a></li>
-        <li><a href="https://github.com/isaacs/npm/issues">npm Bugs</a></li>
-        <li><a href="https://github.com/isaacs/npm-www/issues">Website Bugs</a></li>
-        <li><a href="https://groups.google.com/group/npm-">Mailing List</a></li>
-        <li><a href="/about">More about this site</a></li>
-      </ul>
-    </td>
-
-    <td>
-      <h2>Profile Stuff</h2>
-
-      <ul>
-        <li><a href="/signup">Create a profile</a></li>
-        <li><a href="/~">View your profile</a></li>
-        <li><a href="/~ry">View someone else's profile</a></li>
-        <li><a href="/profile-edit">Edit your profile</a></li>
-        <li><a href="/password">Change your password</a></li>
-        <li><a href="/forgot">Reset a forgotten password</a></li>
-        <li><a href="/logout">Log out</a></li>
-      </ul>
-    </td>
-
-  </tr>
-  </table>
+  </div>
 </div>
+
 
 <%- include('footer.ejs', locals) %>

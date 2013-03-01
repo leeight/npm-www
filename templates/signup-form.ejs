@@ -1,5 +1,4 @@
 <%- include('header.ejs', locals) %>
-  <h1>Sign all the way up</h1>
 
 <%
 if (error) {
@@ -7,35 +6,50 @@ if (error) {
 }
 %>
 
-<form action='' method=post class=form>
-<fieldset>
-<label for=name>Username</label>
-<input id=name name=name type=text>
-<p class='form-help'>Must be all lower-case, and not have any non-urlsafe chars.</p>
-</fieldset>
+<form action='' method="post" class="form-horizontal">
+    <fieldset>
+        <legend>Signup</legend>
 
-<fieldset>
-<label for=password>Password</label>
-<input id=password name=password type=password>
-</fieldset>
+        <div class="control-group">
+            <label class="control-label" for="name">Username</label>
+            <div class="controls">
+                <input id="name" name="name" type="text">
+                <span class="help-block"">Must be all lower-case, and not have any non-urlsafe chars.</span>
+            </div>
+        </div>
 
-<fieldset>
-<label for=verify>Verify Password</label>
-<input id=verify name=verify type=password>
-</fieldset>
+        <div class="control-group">
+            <label for=password class="control-label">Password</label>
+            <div class="controls">
+                <input id=password name=password type=password>
+            </div>
+        </div>
 
-<fieldset>
-<label for=email>Email Address</label>
-<input id=email name=email type=email>
-<p class='form-help'>Must be a valid email address.  It <strong>will</strong>
-be shown on the site, and on all packages you publish.</p>
-<p class='form-help'>Accounts without valid email addresses may be deleted
-without notice.</p>
-</fieldset>
+        <div class="control-group">
+            <label for=verify class="control-label">Verify Password</label>
+            <div class="controls">
+                <input id=verify name=verify type=password>
+            </div>
+        </div>
 
-<fieldset class='buttons'>
-<button class='btn' type='submit'>Make it so.</button>
-</fieldset>
-<%- csrf %>
+        <div class="control-group">
+            <label for=email class="control-label">Email Address</label>
+            <div class="controls">
+                <input id=email name=email type=email>
+                <span class="help-block">Must be a valid email address.  It <strong>will</strong>
+be shown on the site, and on all packages you publish.</span>
+                <span class="help-block">Accounts without valid email addresses may be deleted
+without notice.</span>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <button class='btn' type='submit'>Make it so.</button>
+            </div>
+        </div>
+
+        <%- csrf %>
 </form>
+
 <%- include('footer.ejs', locals) %>
