@@ -9,59 +9,75 @@
   %>
 
 <div class="row">
-  <div class="span3">
-    <h2>最近更新</h2>
-    <ul class="unstyled">
-      <%
-      var now = Date.now()
-      updated.forEach(function (p) {
-        var m = now - (new Date(p.value).getTime())
-        m = Math.floor(m / (1000 * 60))
-        %><li><%= m %>m <a href="<%= p.url %>"><%= p.name %></a></li>
-        <%
-      })
-      %>
-      <li><a href="/browse/updated">More...</a></li>
-    </ul>
+  <div class="span2">
+    <%- include('aside.ejs', locals) %>
   </div>
-  <div class="span3">
-    <h2>最多依赖</h2>
-    <ul class="unstyled">
-      <%
-      depended.forEach(function (p) {
-        %><li><%= p.value %> <a href="/package/<%= p.name
-          %>"><%= p.name %></a></li>
-        <%
-      })
-      %>
-      <li><a href="/browse/depended">More...</a></li>
-    </ul>
-  </div>
-  <div class="span3">
-    <h2>最多关注</h2>
-    <ul class="unstyled">
-      <%
-      starred.forEach(function (p) {
-        %><li><%= p.value %> <a href="/package/<%= p.name
-        %>"><%= p.name %></a></li>
-        <%
-      })
-      %>
-      <li><a href="/browse/star">More...</a></li>
-    </ul>
-  </div>
-  <div class="span3">
-    <h2>高产人士</h2>
-    <ul class="unstyled">
-      <%
-      authors.forEach(function (p) {
-        %><li><%= p.value %> <a href="/~<%= p.name
-        %>"><%= p.name %></a></li>
-        <%
-      })
-      %>
-      <li><a href="/recent-authors">More...</a></li>
-    </ul>
+  <div class="span10 index-page">
+    <div class="home-header">
+      <h1>
+        <span class="edp-name">EDP</span>
+        <span class="tag-line">The ECOM Dev Platform</span>
+      </h1>
+    </div>
+
+    <div class="row">
+      <div class="span4">
+        <table class="table table-striped">
+          <thead><th colspan="2">Recently Updated<a href="/browse/updated" class="pull-right">More...</a></th></thead>
+          <%
+          var now = Date.now()
+          updated.forEach(function (p) {
+            var m = now - (new Date(p.value).getTime())
+            m = Math.floor(m / (1000 * 60))
+            %><tr><th><%= m %>m </th><td><a href="<%= p.url %>"><%= p.name %></a></td></tr>
+            <%
+          })
+          %>
+        </table>
+      </div>
+
+      <div class="span4">
+        <table class="table table-striped">
+          <thead><th colspan="2">Most Depended Upon<a href="/browse/depended" class="pull-right">More...</a></th></thead>
+          <%
+          depended.forEach(function (p) {
+            %><tr><th><%= p.value %></th><td><a href="/package/<%= p.name
+              %>"><%= p.name %></a></td></tr>
+            <%
+          })
+          %>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span4">
+        <table class="table table-striped">
+          <thead><th colspan="2">Most Starred<a href="/browse/star" class="pull-right">More...</a></th></thead>
+          <%
+          starred.forEach(function (p) {
+            %><tr><th><%= p.value %></th><td><a href="/package/<%= p.name
+            %>"><%= p.name %></a></td></tr>
+            <%
+          })
+          %>
+        </table>
+      </div>
+
+      <div class="span4">
+        <table class="table table-striped">
+          <thead><th colspan="2">Most Prolific Recently<a href="/recent-authors" class="pull-right">More...</a></th></thead>
+          <%
+          authors.forEach(function (p) {
+            %><tr><th><%= p.value %></th><td><a href="/~<%= p.name
+            %>"><%= p.name %></a></td></tr>
+            <%
+          })
+          %>
+        </table>
+      </div>
+    </div>
+
   </div>
 </div>
 

@@ -1,0 +1,40 @@
+.navbar-inner {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.navbar .nav > li:hover {
+    background: #a0a0a0;
+}
+
+.index-page .table th {
+    width: 100px;
+}
+
+.index-page .home-header {
+    padding: 15px 0;
+}
+
+.index-page .home-header .edp-name {
+    font-size: 2.8em;
+    font-weight: 900;
+    letter-spacing: .06em;
+    -webkit-text-stroke: 4px;
+    text-transform: uppercase;
+}
+
+.index-page .home-header .tag-line {
+    display: block;
+    margin-top: .1em;
+    font-size: 1.21em;
+    margin-bottom: 0;
+}
+
+.footer {
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 20px;
+    border-top: 1px solid #e5e5e5;
+    background-color: #f5f5f5;
+}
