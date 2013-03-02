@@ -66,7 +66,8 @@ queue(function (cb) {
 }, function (cb) {
   // give it a few seconds to download some interesting data.
   // otherwise the site is pretty empty.
-  exec(process.execPath, [require.resolve('./replicate.js')], 5000, cb)
+  // exec(process.execPath, [require.resolve('./replicate.js')], 5000, cb)
+  cb();
 
 }, function (er) {
   if (er) throw er

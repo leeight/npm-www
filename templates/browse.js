@@ -1,10 +1,10 @@
 <%- include('header.ejs', locals) %>
 
 <div class="row">
-  <div class="span2">
+  <div class="span3">
     <%- include('aside.ejs', locals) %>
   </div>
-  <div class="span10">
+  <div class="span9">
     <div class="page-header">
       <h3><%- pageTitle %></h3>
     </div>
@@ -30,7 +30,7 @@
         if (!p.name) return
         %>
         <tr>
-          <td><a href="<%= p.url %>"><%= p.name %></a></td>
+          <th><a href="<%= p.url %>"><%= p.name %></a></th>
           <td><%= p.description || '--' %></td>
         </tr>
         <%

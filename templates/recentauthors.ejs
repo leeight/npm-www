@@ -1,15 +1,27 @@
 <%- include('header.ejs', locals) %>
-<div id="package">
-  <h1><%- pageTitle %></h1>
-  <p class="description">
+
+<div class="row">
+  <div class="span3">
+    <%- include('aside.ejs', locals) %>
+  </div>
+<div class="span9">
+    <div class="page-header">
+        <h3><%- pageTitle %></h3>
+    </div>
+
+  <div class="pagination">
+    <ul>
     <% if (page > 0) { %>
-      <a href="/recentauthors/<%= browseby %>/<%= page - 1 %>/">&larr; previous</a>
+      <li><a href="/recentauthors/<%= browseby %>/<%= page - 1 %>/">&larr;</a></li>
     <% } %>
-    Page <%= page + 1 %>
+    <li><a href="#"><%= page + 1 %></a></li>
     <% if (items.length >= pageSize) { %>
-      <a href="/recentauthors/<%= browseby %>/<%= page + 1 %>/">next &rarr;</a>
+      <li><a href="/recentauthors/<%= browseby %>/<%= page + 1 %>/">&rarr;</a></li>
     <% } %>
-  </p>
+    </ul>
+  </div>
+
+  <table class="table table-striped">
   <%
   items = items.filter(function (p) { return p.name })
 
@@ -17,26 +29,26 @@
     items.forEach(function (p) {
       if (!p.name) return
       %>
-      <div class="row">
-        <p><a href="<%= p.url %>"><%= p.name %></a>
-          <%= p.description || '' %></p>
-      </div>
-      <%
-    })
-  } else {
-    %>
-    <div class="row"><p>No items found.</p></div>
-    <%
-  }
-  %>
-  <p class="description">
+        <tr>
+          <th><a href="<%= p.url %>"><%= p.name %></a></th>
+          <td><%= p.description || '--' %></td>
+        </tr>
+      <% }) } else { %>
+      <tr><td colspan="2">No items found.</td></tr>
+    <% } %>
+  </table>
+
+  <div class="pagination">
+    <ul>
     <% if (page > 0) { %>
-      <a href="/browse/<%= browseby %>/<%= page - 1 %>/">&larr; previous</a>
+      <li><a href="/recentauthors/<%= browseby %>/<%= page - 1 %>/">&larr;</a></li>
     <% } %>
-    Page <%= page + 1 %>
+    <li><a href="#"><%= page + 1 %></a></li>
     <% if (items.length >= pageSize) { %>
-      <a href="/browse/<%= browseby %>/<%= page + 1 %>/">next &rarr;</a>
+      <li><a href="/recentauthors/<%= browseby %>/<%= page + 1 %>/">&rarr;</a></li>
     <% } %>
-  </p>
+    </ul>
+  </div>
+</div>
 </div>
 <%- include('footer.ejs', locals) %>
