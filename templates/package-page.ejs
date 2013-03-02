@@ -23,7 +23,7 @@
 <table class="table table-bordered">
   <% if (package.maintainers) { %>
   <tr>
-    <th width="100px">Maintainers</th>
+    <th width="150px">Maintainers</th>
     <td>
     <%
     package.maintainers.forEach(function (m) {
@@ -52,6 +52,12 @@
       <% } %>
     </td>
   </tr>
+  <% if(package.versions){ %>
+  <tr>
+    <th>Available Versions</th>
+    <td><%= Object.keys(package.versions).join(", ") %></td>
+  </tr>
+  <% } %>
   <%
   if (typeof package.keywords === 'string') {
     package.keywords = package.keywords.split(/\s*,?\s*/)
